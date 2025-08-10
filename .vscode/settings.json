@@ -1,0 +1,41 @@
+{
+    // Liên kết file và từ khóa với ngôn ngữ C++
+    "files.associations": {
+        "*.qml": "qml",
+        "*.h": "cpp",
+        "*.cpp": "cpp",
+        "qqmlapplicationengine": "cpp",
+        "qlibrary": "cpp",
+        "qobject": "cpp",
+        "qguiapplication": "cpp",
+        "qquickview": "cpp",
+        "qvariant": "cpp",
+        "qdebug": "cpp",
+        "qdir": "cpp",
+        "memory": "cpp",
+        "qcoreapplication": "cpp",
+        "new": "cpp"
+    },
+    // Cấu hình CMake Tools
+    "cmake.configureOnOpen": true, // Tự động chạy CMake configure khi mở dự án
+    "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+    "cmake.generator": "",
+    "cmake.configureSettings": {
+        "CMAKE_PREFIX_PATH": "D:/QT/qt-everywhere-src-6.5.3/build/qtbase" // Đường dẫn Qt
+    },
+    // Cấu hình C/C++ extension
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools", // Dùng CMake Tools cung cấp cấu hình IntelliSense
+    "C_Cpp.default.cppStandard": "c++17", // Chuẩn C++ (Qt 6 yêu cầu C++17)
+    "C_Cpp.default.includePath": [
+        "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include", // Include Qt headers
+        "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtCore",
+        "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtGui",
+        "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtQuick",
+        "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtQml", // 
+        "${workspaceFolder}/src" // Thư mục mã nguồn dự án
+    ],
+    // Tùy chỉnh editor
+    "editor.formatOnSave": true, // Tự động format khi lưu file
+    "editor.suggest.showClasses": true, // Hiển thị gợi ý lớp
+    "editor.suggest.showFunctions": true, // Hiển thị gợi ý hàm
+}

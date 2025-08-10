@@ -1,0 +1,7 @@
+Name Parameter,DefaultValue,Send
+SpO2,1,0
+Temp,36.5,0
+Pressure,120,0
+Mode,A,1
+Alarm,ON,0
+FiO2_set,30,1

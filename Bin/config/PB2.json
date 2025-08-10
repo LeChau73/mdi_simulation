@@ -1,0 +1,452 @@
+{
+    "MISCF": {
+        "frameType": "PBFrame",
+        "fieldCount": 5,
+        "messageLength": 10,
+        "start": "0x02",
+        "delimiter": "0x2c",
+        "end": "0x030d",
+        "params": [
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            },
+            {
+                "name": "SpO2",
+                "type": "bit",
+                "byteLimit": 1
+            },
+            {
+                "name": "Temp",
+                "type": "free",
+                "byteLimit": 4
+            },
+            {
+                "name": "Pressure",
+                "type": "free",
+                "byteLimit": 3
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "options": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "byteLimit": 1
+            },
+            {
+                "name": "Alarm",
+                "type": "parameter",
+                "state": [
+                    "ON",
+                    "OFF"
+                ],
+                "byteLimit": 2
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "byteLimit": 2
+            },
+            {
+                "name": "Chau_set",
+                "type": "free",
+                "byteLimit": 6
+            }
+        ]
+    }
+}

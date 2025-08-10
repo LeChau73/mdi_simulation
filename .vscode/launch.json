@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run mdi simulation debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Bin/MDISimulator.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "D:/QT/qt-everywhere-src-6.5.3/build/qtbase;D:/QT/qt-everywhere-src-6.5.3/build/qtbase/bin;${env:PATH}"
+                }
+            ],
+            "externalConsole": true, // Đảm bảo false để log vào Debug Console
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/msys64/usr/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "directory D:/QT/mdi_simulation/core/src",
+                    "ignoreFailures": true,
+                }
+            ]
+        }
+    ]
+}

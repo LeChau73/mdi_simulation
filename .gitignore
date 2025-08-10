@@ -1,0 +1,48 @@
+# Qt build files
+Bin/build-*/
+*.pro.user*
+*.pro.user
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.rcc
+*.qrc
+*.obj
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.ilk
+*.pdb
+*.idb
+
+# Qt Creator settings
+*.creator.user
+*.creator.user.*
+*.autosave
+*.user
+
+# CMake build files (nếu dùng CMake)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+Bin/build/
+
+# QML cache and QML generated files
+qmldir
+qmlcache/
+
+# Misc
+*.log
+*.tmp
+*.bak
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db

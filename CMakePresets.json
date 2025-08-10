@@ -1,0 +1,62 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Unix Makefiles",
+      "binaryDir": "${workspaceFolder}/Bin/build",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "D:/msys64/ucrt64/bin/g++.exe",
+        "CMAKE_PREFIX_PATH": "D:/QT/qt-everywhere-src-6.5.3/build/qtbase",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      },
+      "environment": {
+        "PATH": "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/bin;D:/msys64/ucrt64/bin;D:/msys64/usr/bin;D:/QT/qt-everywhere-src-6.5.3/build"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ]
+        }
+      }
+    },
+    {
+      "name": "windows-debug",
+      "displayName": "Windows Debug Qt Quick",
+      "description": "Debug configuration for Qt Quick with MSVC on Windows",
+      "inherits": "windows-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-release",
+      "displayName": "Windows Release Qt Quick",
+      "description": "Release configuration for Qt Quick with MSVC on Windows",
+      "inherits": "windows-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-debug",
+      "configurePreset": "windows-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-release",
+      "configurePreset": "windows-release",
+      "configuration": "Release"
+    }
+  ]
+}

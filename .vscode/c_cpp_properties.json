@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "MinGW",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include",
+                "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtCore",
+                "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtGui",
+                "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtQuick"
+            ],
+            "defines": [
+                "QT_VERSION_MAJOR=6",
+                "QT_VERSION_MINOR=5",
+                "Q_OBJECT" // Macro Qt
+            ],
+            "compilerPath": "D:/msys64/ucrt64/bin/g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
