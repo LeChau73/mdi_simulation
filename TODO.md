@@ -1,8 +1,8 @@
 Quản lý 2 tuần này => hơi k tốt
 
 [ ] Tự code + đọc lại phần xử lý : Ngày mai + Sáng T3
-[ ] Xử lý lưu tạm data để lưu file : Chiều T3
-[ ] Xử lý nhập giới hạn data T4
+[x] Xử lý lưu tạm data để lưu file : Chiều T3
+[x] Xử lý nhập giới hạn data T4
 [ ] Save file / Load File  T4
 [ ] Thêm event bỏ chuột, để sendata đi : T5
 [ ] Optimize ,fix bug ,làm đẹp

@@ -31,6 +31,7 @@ Item {
         id: textFieldComponent
         TextField {
             property int itemIndex: parent.parent.itemIndex
+            maximumLength: byteLimit
             text: {
                 if (tableModel && itemIndex >= 0 && itemIndex < tableModel.rowCount()) {
                     let valueIndex = tableModel.index(itemIndex, 1)
@@ -302,12 +303,14 @@ Item {
                                         Loader {
                                             anchors.fill: parent
                                             anchors.margins: 2
+                                            property int byteLimit: 0
                                             
                                             sourceComponent: {
                                                 if (hasData && tableModel && itemIndex < tableModel.rowCount()) {
                                                     let nameIndex = tableModel.index(itemIndex, 0)
                                                     let paramType = tableModel.data(nameIndex, Qt.UserRole + 1) || "text"
-                                                    
+                                                    byteLimit =  tableModel.data(nameIndex, Qt.UserRole + 3) || 1
+                                                    console.log("ByteLimit: ", byteLimit)
                                                     if (paramType === "option") return optionComponent
                                                     else if (paramType === "parameter") return stateComponent
                                                     else return textFieldComponent

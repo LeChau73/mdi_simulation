@@ -74,6 +74,11 @@ QStandardItemModel *FileDataLoader::loadTableModel(const QString &deviceType, co
         QString value = getCsvValue(deviceType, command, name);
         int send = getCsvDefaultSend(deviceType, command, name);
 
+        m_defaultValueCache.insert(name, qMakePair(defaultValue, static_cast<bool>(send)));
+
+        qDebug() << m_defaultValueCache[name].first;
+        qDebug() << m_defaultValueCache[name].second;
+
         name += "(" + byteLimit + "byte" + ")";
 
         QList<QStandardItem *> row;
@@ -84,7 +89,12 @@ QStandardItemModel *FileDataLoader::loadTableModel(const QString &deviceType, co
 
         // Fix: Lưu metadata vào item đầu tiên thay vì index(rowCount-1, 0)
         QModelIndex nameIndex = model->index(model->rowCount() - 1, 0);
-        model->setData(nameIndex, paramObj["type"].toString(), Qt::UserRole + 1);
+        // Sets the role data for the item at index to value.
+        // Set role + 1 cho "type": free ở index 3
+
+        model->setData(nameIndex, paramObj["type"].toString(), Qt::UserRole + 1);   // truyền vào tất cả các loại free/option/parameter để so sánh
+        model->setData(nameIndex, paramObj["byteLimit"].toInt(), Qt::UserRole + 3); // medata bytelimit cho parameter
+
         if (paramObj["type"].toString() == "option")
         {
             model->setData(nameIndex, paramObj["options"].toVariant(), Qt::UserRole + 2);
@@ -167,7 +177,7 @@ bool FileDataLoader::writeCsvValue(const QString &deviceType, const QString &com
 
     if (!found)
     {
-        qWarning() << "Parameter" << paramName << "not found in CSV";
+        // qWarning() << "Parameter" << paramName << "not found in CSV";
         return false;
     }
 
@@ -188,12 +198,6 @@ bool FileDataLoader::writeCsvValue(const QString &deviceType, const QString &com
 
 void FileDataLoader::updateCsvData(const QString &deviceType, const QString &command, const QString &paramName, const QString &value, bool send)
 {
-    if (writeCsvValue(deviceType, command, paramName, value, send))
-    {
-        qDebug() << "Updated CSV for" << paramName << "with value" << value << "and send" << send;
-    }
-    else
-    {
-        emit loadingError("Failed to update CSV for " + paramName);
-    }
+    m_defaultValueCache[paramName] = qMakePair(value, send);
+    qDebug() << "Updated New Value" << paramName << "with value" << value << "and send" << send;
 }

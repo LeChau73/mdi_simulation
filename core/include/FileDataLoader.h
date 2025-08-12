@@ -27,7 +27,7 @@ private:
     bool writeCsvValue(const QString &deviceType, const QString &command, const QString &paramName, const QString &value, bool send);
 
     QHash<QString, QJsonObject> m_jsonCache;
-    QHash<QString, QString> m_defaultValueCache; // Cache cho default values
+    QHash<QString, QPair<QString, bool>> m_defaultValueCache; // Cache cho default values [key] [[value] [send]]
 };
 
 #endif // FILEDATALOADER_H
