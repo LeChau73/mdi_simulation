@@ -14,7 +14,23 @@
         "qdir": "cpp",
         "memory": "cpp",
         "qcoreapplication": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "qjsonobject": "cpp",
+        "random": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "optional": "cpp",
+        "format": "cpp",
+        "ranges": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "text_encoding": "cpp",
+        "typeinfo": "cpp"
     },
     // Cấu hình CMake Tools
     "cmake.configureOnOpen": true, // Tự động chạy CMake configure khi mở dự án

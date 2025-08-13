@@ -5,6 +5,15 @@
 #include <QJsonObject>
 #include <QStandardItemModel>
 
+struct DataCsv
+{
+    QString value;
+    QString send;
+    QString type;
+    QStringList options;
+    int byteLimit;
+};
+
 class FileDataLoader : public QObject
 {
     Q_OBJECT
@@ -19,10 +28,15 @@ signals:
     void loadingError(const QString &errorMessage);
 
 private:
+    QHash<QString, DataCsv> csvData;
+    QList<QString> orderList; // Lưu thứ tự các name
     QJsonObject loadJsonConfig(const QString &deviceType, const QString &command);
     QString getCsvValue(const QString &deviceType, const QString &command, const QString &paramName);
-    QString getCsvDefaultValue(const QString &deviceType, const QString &command, const QString &paramName);
+
+    bool getCsvDefaultValue(const QString &deviceType, const QString &command);
+
     int getCsvDefaultSend(const QString &deviceType, const QString &command, const QString &paramName); // Thêm phương thức mới
+
     int getCsvSend(const QString &deviceType, const QString &command, const QString &paramName);
     bool writeCsvValue(const QString &deviceType, const QString &command, const QString &paramName, const QString &value, bool send);
 
