@@ -1,0 +1,1013 @@
+{
+    "MISCF": {
+        "frameType": "PBFrame",
+        "messageLength": 2,
+        "start": "0x02",
+        "delimiter": "0x2c",
+        "end": "0x030d",
+        "fieldCount": 155,
+        "params": [
+            {
+                "name": "Vtime",
+                "type": "free",
+                "defaultValue": "22:45",
+                "byteLimit": 12
+            },
+            {
+                "name": "VENT_ID",
+                "type": "free",
+                "defaultValue": "980 35B1922366",
+                "byteLimit": 18
+            },
+            {
+                "name": "YMD",
+                "type": "free",
+                "defaultValue": "DEC 28 2023",
+                "byteLimit": 12
+            },
+            {
+                "name": "VENT_TYPE",
+                "type": "option",
+                "defaultValue": "INVASIVE",
+                "options": ["NIV", "INVASIVE"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Mode",
+                "type": "option",
+                "defaultValue": "A/C",
+                "options": ["A/C", "SIMV", "SPONT", "CPAP"],
+                "byteLimit": 6
+            },
+            {
+                "name": "MAND_TYPE",
+                "type": "option",
+                "defaultValue": "PC",
+                "options": ["PC", "VC", "VC+"],
+                "byteLimit": 6
+            },
+            {
+                "name": "SPONT_TYPE",
+                "type": "option",
+                "defaultValue": "",
+                "options": ["PS", "TC", "VS", "PA"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Trigger_set",
+                "type": "option",
+                "defaultValue": "V-Trig",
+                "options": ["-TRIG", "P-TRIG"],
+                "byteLimit": 6
+            },
+            {
+                "name": "f_set",
+                "type": "free",
+                "defaultValue": "20.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "VT_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Max_if",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "FiO2_set",
+                "type": "free",
+                "defaultValue": "30",
+                "byteLimit": 6
+            },
+            {
+                "name": "Trigger",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "PEEP_set",
+                "type": "free",
+                "defaultValue": "7.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "Plat_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Apnea_T",
+                "type": "free",
+                "defaultValue": "20",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_VT_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_f_set",
+                "type": "free",
+                "defaultValue": "10.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_Max_if",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_FiO2_set",
+                "type": "free",
+                "defaultValue": "100",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_PCV_PRESS",
+                "type": "free",
+                "defaultValue": "15",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_PCV_SEC",
+                "type": "free",
+                "defaultValue": "0.76",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_Flow_Patt",
+                "type": "option",
+                "defaultValue": "",
+                "options": ["SQUARE", "RAMP"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_COMP_TYPE",
+                "type": "option",
+                "defaultValue": "PC",
+                "options": ["PC", "VC"],
+                "byteLimit": 6
+            },
+            {
+                "name": "I_ratio",
+                "type": "free",
+                "defaultValue": "1.00",
+                "byteLimit": 6
+            },
+            {
+                "name": "E_ratio",
+                "type": "free",
+                "defaultValue": "6.89",
+                "byteLimit": 6
+            },
+            {
+                "name": "ASB_PSV",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Wave",
+                "type": "option",
+                "defaultValue": "",
+                "options": ["SQUARE", "RAMP"],
+                "byteLimit": 6
+            },
+            {
+                "name": "O2_stat",
+                "type": "parameter",
+                "defaultValue": "OFF",
+                "state": ["ON", "OFF"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_Ppeak",
+                "type": "free",
+                "defaultValue": "40",
+                "byteLimit": 6
+            },
+            {
+                "name": "L_Ppeak",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VETOT",
+                "type": "free",
+                "defaultValue": "19.000",
+                "byteLimit": 6
+            },
+            {
+                "name": "L_VETOT",
+                "type": "free",
+                "defaultValue": "2.450",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTEMAND",
+                "type": "free",
+                "defaultValue": "750",
+                "byteLimit": 6
+            },
+            {
+                "name": "L_VTEMAND",
+                "type": "free",
+                "defaultValue": "250",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTESPONT",
+                "type": "free",
+                "defaultValue": "750",
+                "byteLimit": 6
+            },
+            {
+                "name": "L_VTESPONT",
+                "type": "free",
+                "defaultValue": "250",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_fTOT",
+                "type": "free",
+                "defaultValue": "30",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTI",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Base_f",
+                "type": "free",
+                "defaultValue": "4.5",
+                "byteLimit": 6
+            },
+            {
+                "name": "f_Sense",
+                "type": "free",
+                "defaultValue": "3.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "PI",
+                "type": "free",
+                "defaultValue": "12",
+                "byteLimit": 6
+            },
+            {
+                "name": "TI",
+                "type": "free",
+                "defaultValue": "0.90",
+                "byteLimit": 6
+            },
+            {
+                "name": "IE_In",
+                "type": "free",
+                "defaultValue": "1.00",
+                "byteLimit": 6
+            },
+            {
+                "name": "IE_Ex",
+                "type": "free",
+                "defaultValue": "2.33",
+                "byteLimit": 6
+            },
+            {
+                "name": "FIX_f_set",
+                "type": "option",
+                "defaultValue": "I-TIME",
+                "options": ["I時間", "I/E", "E時間"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TUBE_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "TUBE_TYPE",
+                "type": "option",
+                "defaultValue": "",
+                "options": ["ET", "TRACH"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Hum_TYPE",
+                "type": "option",
+                "defaultValue": "Heated Exp.",
+                "options": ["Non-heated Expiratory Tube", "Heated Expiratory Tube", "HME"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Hum_VOL",
+                "type": "free",
+                "defaultValue": "0.280",
+                "byteLimit": 6
+            },
+            {
+                "name": "O2_Sencer",
+                "type": "option",
+                "defaultValue": "Enabled",
+                "options": ["Enabled", "Disabled"],
+                "byteLimit": 6
+            },
+            {
+                "name": "PoorConnSenc",
+                "type": "free",
+                "defaultValue": "75",
+                "byteLimit": 6
+            },
+            {
+                "name": "Standup_flow",
+                "type": "free",
+                "defaultValue": "70",
+                "byteLimit": 6
+            },
+            {
+                "name": "RAV_SUPP",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "ESENS",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "IBW",
+                "type": "free",
+                "defaultValue": "60.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "VTSUPP",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_PEEP_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "L_PEEP_set",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_PEEP_TIME",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_TISPONT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Circuit_TYPE",
+                "type": "option",
+                "defaultValue": "ADULT",
+                "options": ["ADULT", "PEDIATRIC"],
+                "byteLimit": 6
+            },
+            {
+                "name": "L_PEEP_TIME",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "TE",
+                "type": "free",
+                "defaultValue": "2.10",
+                "byteLimit": 6
+            },
+            {
+                "name": "PIEND",
+                "type": "free",
+                "defaultValue": "19.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "f",
+                "type": "free",
+                "defaultValue": "20.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "VTe",
+                "type": "free",
+                "defaultValue": "0.503",
+                "byteLimit": 6
+            },
+            {
+                "name": "MV",
+                "type": "free",
+                "defaultValue": "10.100",
+                "byteLimit": 6
+            },
+            {
+                "name": "Peak",
+                "type": "free",
+                "defaultValue": "20.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "Mean",
+                "type": "free",
+                "defaultValue": "11.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "IE",
+                "type": "free",
+                "defaultValue": "2.30",
+                "byteLimit": 6
+            },
+            {
+                "name": "IEmoni",
+                "type": "free",
+                "defaultValue": "1:2.30",
+                "byteLimit": 6
+            },
+            {
+                "name": "O2conce",
+                "type": "free",
+                "defaultValue": "29",
+                "byteLimit": 6
+            },
+            {
+                "name": "VTI",
+                "type": "free",
+                "defaultValue": "0.515",
+                "byteLimit": 6
+            },
+            {
+                "name": "PEEPI",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "RTOT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "RPAV",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "EPAV",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "CPAV",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Breath_Index",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "f/VT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "TI/TTOT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "Moniterd_PEEP",
+                "type": "free",
+                "defaultValue": "7.1",
+                "byteLimit": 6
+            },
+            {
+                "name": "TISPONT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "MVs",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "PEEPIe",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "PEEPTOT",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "CSTAT",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "RSTAT",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "PPL",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "TISPONT_H",
+                "type": "option",
+                "defaultValue": "",
+                "options": ["ALERT", ""],
+                "byteLimit": 6
+            },
+            {
+                "name": "CDYN",
+                "type": "free",
+                "defaultValue": "68.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "RDYN",
+                "type": "free",
+                "defaultValue": "11.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "PSF",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "PEF",
+                "type": "free",
+                "defaultValue": "50.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "EEF",
+                "type": "free",
+                "defaultValue": "1.3",
+                "byteLimit": 6
+            },
+            {
+                "name": "-",
+                "type": "free",
+                "defaultValue": "OFF",
+                "byteLimit": 6
+            },
+            {
+                "name": "NIF",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "P0_1_PRESS_Ex",
+                "type": "free",
+                "defaultValue": "0.0",
+                "byteLimit": 6
+            },
+            {
+                "name": "VC",
+                "type": "free",
+                "defaultValue": "0.000",
+                "byteLimit": 6
+            },
+            {
+                "name": "Ala_stat",
+                "type": "parameter",
+                "defaultValue": "OFF",
+                "state": ["ON", "OFF"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Ap_Ala2",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VETOT_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTE_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_O2_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_PPEAK_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_PVENT_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_fTOT_Ala",
+                "type": "option",
+                "defaultValue": "RESET",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "AC_Loss_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Batt_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "BattLow_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Electric_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "MV_L_Ala",
+                "type": "option",
+                "defaultValue": "RESET",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "L_VETOT_Ala",
+                "type": "option",
+                "defaultValue": "RESET",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "L_VTESPT_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "O2_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Air_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "O2_PRESS_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Comp_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Con_Ala1",
+                "type": "option",
+                "defaultValue": "RESET",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "Con_Ala2",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "InTmOver_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "SEQ_ERR",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "VT",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTISPT_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "H_VTIMAND_Ala",
+                "type": "free",
+                "defaultValue": "NORMAL",
+                "byteLimit": 6
+            },
+            {
+                "name": "H_PCOMP_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "PAV_Start_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "PAV_R_C_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "VC+_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "VS_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "L_PPEAK_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA05_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA10_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA15_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA20_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA25_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA30_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA35_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA40_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA45_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA50_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA55_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA60_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA65_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA70_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA75_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA80_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "TechA85_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["NORMAL", "LOW", "MEDIUM", "HIGH", "RESET"],
+                "byteLimit": 6
+            },
+            {
+                "name": "VTESPONT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "WOBTOT",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "LEAK_revision",
+                "type": "parameter",
+                "defaultValue": "OFF",
+                "state": ["ON", "OFF"],
+                "byteLimit": 9
+            },
+            {
+                "name": "LEAK%%",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "LEAK@PEEP",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "VLEAK",
+                "type": "free",
+                "defaultValue": "",
+                "byteLimit": 6
+            },
+            {
+                "name": "ProxInop_Ala",
+                "type": "option",
+                "defaultValue": "NORMAL",
+                "options": ["ALARM", "NORMAL"],
+                "byteLimit": 6
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "device_id": "draeger_evita4",
+    "protocol": "Medibus.X",
+    "frame": {
+        "start": "0x02",
+        "end": "0x03",
+        "delimiter": "0x20",
+        "checksum": "XOR8"
+    },
+    "sequence": {
+        "boot": {
+            "frames": [
+                {
+                    "response_csv": "BootResponse.csv",
+                    "delay_ms": 200
+                }
+            ]
+        },
+        "command_response": {
+            "commands": [
+                {
+                    "cmd": "0x10",
+                    "description": "Device Info",
+                    "response_csv": "DeviceInfoFrame.csv"
+                },
+                {
+                    "cmd": "0x20",
+                    "description": "Vitals Data",
+                    "response_csv": "DataFrame.csv"
+                },
+                {
+                    "cmd": "0x21",
+                    "description": "Alarm",
+                    "response_csv": "AlarmFrame.csv"
+                },
+                {
+                    "cmd": "0x30",
+                    "description": "Waveform",
+                    "response_csv": "WaveformFrame.csv"
+                },
+                {
+                    "cmd": "0x40",
+                    "description": "Number",
+                    "response_csv": "NumberFrame.csv"
+                }
+            ]
+        }
+    }
+}

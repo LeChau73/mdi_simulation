@@ -30,7 +30,10 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "text_encoding": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "atomic": "cpp",
+        "__node_handle": "cpp",
+        "locale": "cpp"
     },
     // Cấu hình CMake Tools
     "cmake.configureOnOpen": true, // Tự động chạy CMake configure khi mở dự án
@@ -48,6 +51,7 @@
         "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtGui",
         "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtQuick",
         "D:/QT/qt-everywhere-src-6.5.3/build/qtbase/include/QtQml", // 
+        "${workspaceFolder}/core/include/",
         "${workspaceFolder}/src" // Thư mục mã nguồn dự án
     ],
     // Tùy chỉnh editor

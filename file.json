@@ -1,0 +1,73 @@
+{
+  "devices": [
+    {
+      "name": "PB",
+      "id": "0xPB",
+      "frame": {
+        "start": "0x01",
+        "header_length": 3,
+        "data_start": "0x02",
+        "delimiter": "0x2C",
+        "data_end": "variable",
+        "checksum": "yes",
+        "end": "0x03"
+      },
+      "sequence": [
+        { "step": "driver_send", "desc": "Driver gửi command" },
+        { "step": "device_response", "desc": "Device phản hồi data frame" },
+        { "step": "ack_nack", "desc": "Một số lệnh có ACK/NACK" }
+      ]
+    },
+    {
+      "name": "CI500",
+      "id": "0xCI500",
+      "frame": {
+        "encoding": "ASCII",
+        "delimiter": ["0x09"],
+        "end": ["0x0D", "0x0A"]
+      },
+      "sequence": [
+        { "step": "cyclic_send", "desc": "Device gửi log định kỳ, driver chỉ parse" },
+        { "step": "ack_nack", "desc": "Không dùng" }
+      ]
+    },
+    {
+      "name": "INVOS5100C",
+      "id": "0xINVOS5100C",
+      "frame": {
+        "encoding": "ASCII",
+        "delimiter": "0x20",
+        "structure": {
+          "Date": null,
+          "Time": null,
+          "DataBlock1": ["Value1", "Value2", "Value3", "Value4"],
+          "DataBlock2": ["rSO2", "EventMark", "Status", "A", "B", "C", "BVI"],
+          "SensorIDs": ["ID1", "ID2", "ID3", "ID4"]
+        },
+        "end": ["0x0D", "0x0A"]
+      },
+      "sequence": [
+        { "step": "cyclic_send", "desc": "Device gửi log mỗi 30s" },
+        { "step": "ack_nack", "desc": "Không dùng" }
+      ]
+    },
+    {
+      "name": "KM9000",
+      "id": "0xKM9000",
+      "frame": {
+        "start": "0xAA55",
+        "header_length": 2,
+        "delimiter": "0x20",
+        "data_end": "variable",
+        "checksum": "crc16",
+        "end": "0x0D0A"
+      },
+      "sequence": [
+        { "step": "driver_send_command", "desc": "Driver gửi lệnh điều khiển" },
+        { "step": "device_ack", "desc": "Device phản hồi ACK/NACK" },
+        { "step": "driver_request_data", "desc": "Driver yêu cầu dữ liệu" },
+        { "step": "device_response_data", "desc": "Device gửi data frame" }
+      ]
+    }
+  ]
+}

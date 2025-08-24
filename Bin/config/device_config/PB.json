@@ -1,0 +1,10 @@
+{
+    "MISCF": {
+        "frameType": "PBFrame",
+        "fieldCount": 155,
+        "messageLength": 2,
+        "start": "0x02",
+        "delimiter": "0x2c",
+        "end": "0x030d"
+    }
+}

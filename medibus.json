@@ -1,0 +1,68 @@
+{
+  "device_id": "draeger_2020",
+  "protocol": "Medibus.X",
+  "connection": {
+    "baudrate": 9600,
+    "databits": 8,
+    "stopbits": 1,
+    "parity": "none"
+  },
+
+  "frame": {
+    "start": "0x02",
+    "end": "0x03",
+    "delimiter": "0x20",        
+    "checksum": "XOR8"         
+  },
+
+  "sequence": {
+    "boot": {
+      "description": "Phản hồi khi bật máy / reset",
+      "frames": [
+        {
+          "response_csv": "BootResponse.csv",
+          "delay_ms": 200
+        }
+      ]
+    },
+
+    "command_response": {
+      "ack": {
+        "on_receive": true,
+        "value": "0x06"
+      },
+      "nack": {
+        "on_error": true,
+        "value": "0x15"
+      },
+      "timeout_ms": 500,
+      "commands": [
+        {
+          "cmd": "0x10",
+          "description": "Yêu cầu thông tin thiết bị",
+          "response_csv": "DeviceInfoFrame.csv"
+        },
+        {
+          "cmd": "0x20",
+          "description": "Yêu cầu dữ liệu đo lường",
+          "response_csv": "DataFrame.csv"
+        },
+        {
+          "cmd": "0x21",
+          "description": "Yêu cầu alarm",
+          "response_csv": "AlarmFrame.csv"
+        },
+        {
+          "cmd": "0x30",
+          "description": "Yêu cầu waveform",
+          "response_csv": "WaveformFrame.csv"
+        },
+        {
+          "cmd": "0x40",
+          "description": "Yêu cầu số liệu / trạng thái",
+          "response_csv": "NumberFrame.csv"
+        }
+      ]
+    }
+  }
+}

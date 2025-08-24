@@ -1,0 +1,92 @@
+{
+  "devices": {
+    "PB": {
+      "commands": {
+        "MISCF": {
+          "frame": {
+            "startByte": "0x01",
+            "headerLength": 3,
+            "dataStart": "0x02",
+            "delimiter": "0x2C",
+            "checksumType": "XOR",
+            "endByte": "0x03",
+            "messageLength": 1225,
+            "fieldCount": 169
+          },
+          "sequence": {
+            "type": "command-response",
+            "trigger": "driver",
+            "condition": "SNDF",
+            "ackNack": false
+          }
+        }
+      }
+    },
+    "CI500": {
+      "commands": {
+        "LOG": {
+          "frame": {
+            "delimiter": "0x09",
+            "endByte": "0x0D0A",
+            "messageLength": 0,
+            "fieldCount": 0
+          },
+          "sequence": {
+            "type": "auto-cycle",
+            "interval": 10000,
+            "trigger": "device",
+            "ackNack": false
+          }
+        }
+      }
+    },
+    "INVOS5100C": {
+      "commands": {
+        "DATA": {
+          "frame": {
+            "delimiter": "0x20",
+            "multiLevel": true,
+            "levels": [
+              {"fields": 4},
+              {"fields": 7},
+              {"fields": 4}
+            ],
+            "endByte": "0x0D0A",
+            "messageLength": 0,
+            "fieldCount": 15
+          },
+          "sequence": {
+            "type": "auto-cycle",
+            "interval": 30000,
+            "trigger": "device",
+            "ackNack": false
+          }
+        }
+      }
+    },
+    "KM9000": {
+      "commands": {
+        "CMD1": {
+          "frame": {
+            "startByte": "0x02",
+            "idLength": 1,
+            "lengthField": 2,
+            "delimiter": "0x2C",
+            "checksumType": "SUM",
+            "endByte": "0x03",
+            "messageLength": 0,
+            "fieldCount": 0
+          },
+          "sequence": {
+            "type": "command-response",
+            "trigger": "driver",
+            "condition": "ACK",
+            "ackNack": true,
+            "ackByte": "0x06",
+            "nackByte": "0x15"
+          }
+        }
+      }
+    }
+  }
+}

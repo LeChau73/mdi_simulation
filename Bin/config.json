@@ -1,0 +1,100 @@
+{
+    "devices": {
+        "PB": {
+            "commands": {
+                "MISCF": {
+                    "frame": {
+                        "header": "MISCF",
+                        "messageLength": 1225,
+                        "fieldCount": 169,
+                        "dataStart": "0x02",
+                        "delimiter": "0x2C",
+                        "paddingByte": "0x00",
+                        "endByte": "0x03",
+                        "preserveStructure": true
+                    },
+                    "sequence": {
+                        "type": "command-response",
+                        "trigger": "driver",
+                        "condition": "SNDF",
+                        "ackNack": false
+                    },
+                    "csvPath": "D:/QT/mdi_simulation/Bin/config/data_csv/PB_MISCF_defaults.csv"
+                }
+            }
+        },
+        "CI500": {
+            "commands": {
+                "LOG": {
+                    "frame": {
+                        "startByte": "0x20",
+                        "delimiter": "0x09",
+                        "paddingByte": "0x20",
+                        "invalidPadding": "0x2d",
+                        "endByte": "0x0D0A"
+                    },
+                    "sequence": {
+                        "type": "auto-cycle",
+                        "interval": 10000,
+                        "trigger": "device",
+                        "ackNack": false
+                    },
+                    "csvPath": "D:/QT/mdi_simulation/data/ci500_log.csv"
+                }
+            }
+        },
+        "INVOS5100C": {
+            "commands": {
+                "DATA": {
+                    "frame": {
+                        "delimiter": "0x20",
+                        "paddingByte": "0x20",
+                        "endByte": "0x0D0A",
+                        "multiLevel": true,
+                        "levels": [
+                            {
+                                "fields": 4
+                            },
+                            {
+                                "fields": 7
+                            },
+                            {
+                                "fields": 4
+                            }
+                        ]
+                    },
+                    "sequence": {
+                        "type": "auto-cycle",
+                        "interval": 30000,
+                        "trigger": "device",
+                        "ackNack": false
+                    },
+                    "csvPath": "D:/QT/mdi_simulation/data/invos5100c_data.csv"
+                }
+            }
+        },
+        "HCS-CFP": {
+            "commands": {
+                "CMD1": {
+                    "frame": {
+                        "startByte": "0x01",
+                        "header": "209",
+                        "dataStart": "0x02",
+                        "delimiter": "0x2C",
+                        "paddingByte": "0x00",
+                        "checksumType": "SUM",
+                        "endByte": "0x03",
+                        "checksumLength": 2
+                    },
+                    "sequence": {
+                        "type": "auto-cycle",
+                        "interval": 1000,
+                        "trigger": "device",
+                        "ackNack": false
+                    },
+                    "csvPath": "D:/QT/mdi_simulation/data/hcs_cfp_cmd1.csv"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+                                                                                            
+    INVOS5100C                                                                                      
+        通信シーケンス                                                                                 
+                医療機器            Driver                                                              
+            繰り返し    数値・アラーム     30sec→                                                                  
+                                                                                            
+        電文構造                                                                                    
+            数値・アラーム                                                                             
+            ASCII                                                                               
+    ※2      日付 Ngày tháng   区切※Ký hiệu phân cách    時間Thời gian 区切Ký hiệu phân cách Data階層1                                                             
+                            value1                                                      ・・・ value4  
+                            Data階層2                                                         Data2階層 続く
+rSO2 + ký hiệu phân cách + dấu sự kiện + ký hiệu phân cách + trạng thái (※3) + ký hiệu phân cách + A + ký hiệu phân cách + B + ký hiệu phân cách + C + ký hiệu phân cách + BVI + ký hiệu phân cách
+n byte  0x2020  n byte  0x2020  n byte  0x2020  n byte  0x2020  n byte  0x2020  n byte  0x20202020  n byte  0x20202020  n byte  0x2020  n byte  0x2020          
+
+Channel 1 Sensor ID + ký hiệu phân cách + Channel 2 Sensor ID + ký hiệu phân cách + Channel 3 Sensor ID + ký hiệu phân cách + Channel 4 Sensor ID + Kết thúc điện văn + Tiếp tục                                                                          
+                                                                                            
+                n byte  0x2020  n byte  0x2020  n byte  0x2020  n byte  0x0a0d                                              
+
+
+※ Ký tự phân cách là 0x20, có trường hợp gồm từ 2 đến 4 ký tự.
+
+※2 Có trường hợp dữ liệu xuất hiện trước ngày tháng (theo log), vì vậy không thể xác định rSO2 theo số thứ tự xuất hiện.
+
+※3 Dữ liệu cảnh báo (alarm) được chứa trong trường Status.
+
+Log được lấy từ dòng 839 (vì khi phân tích từ dòng 8 thì cấu trúc dữ liệu không khớp).           
+                                                           
+            ns_invos5kc(aq=invos5kc1,ns=nsII1,ch=3,macP=01): _command_proc() completed len = 188            
+            30 31 2f 31 33 2f 31 35 20 20 31 38 3a 35 34 3a : 01/13/15  18:54:                              
+            33 32 20 20 36 37 20 20 30 20 20 34 20 20 2d 30 : 32  67  0  4  -0                              
+            2e 37 31 36 36 20 20 20 2d 30 2e 38 33 37 38 20 : .7166   -0.8378                               
+            20 20 30 20 20 30 20 20 30 20 20 30 20 20 31 20 :   0  0  0  0  1                               
+            20 30 2e 30 30 30 30 20 20 20 20 30 2e 30 30 30 :  0.0000    0.000                              
+            30 20 20 20 20 30 20 20 30 20 20 30 20 20 30 20 : 0    0  0  0  0                               
+            20 30 20 20 30 2e 30 30 30 30 20 20 20 20 30 2e :  0  0.0000    0.                              
+            30 30 30 30 20 20 20 20 30 20 20 30 20 20 30 20 : 0000    0  0  0                               
+            20 30 20 20 30 20 20 30 2e 30 30 30 30 20 20 20 :  0  0  0.0000                                 
+            20 30 2e 30 30 30 30 20 20 20 20 30 20 20 30 20 :  0.0000    0  0                               
+            20 41 41 31 33 30 33 30 31 30 35 30 34 2d 30 20 :  AA1303010504-0                               
+            20 30 20 20 30 20 20 30 20 20 0a 0d :  0  0  0  ..                                      rSO2    
+

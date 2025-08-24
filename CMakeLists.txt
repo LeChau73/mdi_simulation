@@ -16,6 +16,9 @@ set(CMAKE_AUTOUIC ON)
 
 message("CMAKE_BINARY_DIR = ${CMAKE_BINARY_DIR}")
 
+# set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_COLOR_MAKEFILE ON CACHE BOOL "Enable color output in Makefile")
+
 # Định nghĩa thư mục output (Bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Bin)
@@ -24,34 +27,36 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Bin)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
 
 # Tìm các gói Qt cần thiết
-find_package(Qt6 COMPONENTS REQUIRED Core Gui Quick)
+find_package(Qt6 COMPONENTS REQUIRED Core Gui Quick Widgets Network)
 
 # Cấu hình setup Qt
 qt_standard_project_setup()
 
 # Định nghĩa danh sách source files
-set(DIR_SOURCES core/src/)
-
 set(SOURCES
-    core/src/main.cpp
-    core/src/FileDataLoader.cpp
-    core/src/MainWindow.cpp
-    resources/qml/qml.qrc
-    resources/qml/ParameterTable.qml
-    resources/qml/main.qml
+    core/src/*.cpp
+    resources/qml/*.qrc
+    resources/qml/*.qml
 )
 
 # Định nghĩa danh sách header files
 set(HEADERS
-    core/include/FileDataLoader.h
-    core/include/MainWindow.h
+    core/include/*.h
+    core/common/*.h
 )
+
+file(GLOB HEADER_FILES "core/include/*.h" "core/common/*.h")
+file(GLOB SOURCES_FILE "core/src/*.cpp")
+file(GLOB QML_FILE "resources/qml/*.qml")
+list(REMOVE_ITEM HEADER_FILES "core/include/exclude_this.h")
 
 qt_add_resources(MY_RESOURCES qml.qrc)
 
 qt_add_executable(MDISimulator
-    ${SOURCES}
-    ${HEADERS}
+    ${HEADER_FILES}
+    ${SOURCES_FILE}
+    ${QML_FILE}
+    resources/qml/qml.qrc
 )
 
 # Thêm module QML
@@ -67,11 +72,13 @@ target_link_libraries(MDISimulator PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
+    Qt6::Widgets
+    Qt6::Network
 )
 
 message("CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 
 # Thêm include directories
 target_include_directories(MDISimulator PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/core/include
 )

@@ -18,3 +18,16 @@ Quản lý 2 tuần này => hơi k tốt
 [ ] Fix Bug
 7 -> 8 : Fix bug
 11 -> 12: Đóng gói : release
+
+
+python parser.py telegram.txt 2c -o result.csv
+
+
+CI500
+python parser.py CI500.txt 09 -o CI500.csv
+HSC-CFP
+python parser.py HSC-CFP.txt 2c -o HSC-CFP.csv
+INVOS5100C
+python parse_INVOS.py INVOS5100C.txt -d " {2,4}" -o INVOS5100C.csv
+PB
+python parser.py PB.txt 2c -o PB.csv
