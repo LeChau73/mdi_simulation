@@ -1,0 +1,127 @@
+QByteArray FrameHandler::buildFrame(const QString& deviceType, const QString& command) {
+    if (!m_configLoader || !m_csvParser) {
+        qWarning() << "ConfigLoader or CsvParser not set!";
+        return QByteArray();
+    }
+
+    QVariantMap frameConfig = m_configLoader->getFrameConfig(deviceType, command);
+    QList<DataCsv> dataStructure = m_csvParser->getDataStructure();
+    QByteArray frame;
+
+    // 1. Thêm startByte nếu có
+    if (frameConfig.contains("startByte")) {
+        frame.append(QByteArray::fromHex(frameConfig.value("startByte").toString().remove("0x").toUtf8()));
+    }
+
+    // 2. Xây dựng body
+    QByteArray paddingByte = QByteArray::fromHex(frameConfig.value("paddingByte").toString().remove("0x").toUtf8());
+    QByteArray invalidPadding = frameConfig.contains("invalidPadding")
+        ? QByteArray::fromHex(frameConfig.value("invalidPadding").toString().remove("0x").toUtf8())
+        : QByteArray::fromHex("2d"); // Default 0x2D
+    QByteArray defaultDelimiter = QByteArray::fromHex("2020"); // 2 spaces
+    bool firstField = true;
+
+    int currentBitIndex = 0;
+    QByteArray bitByte(1, 0x00);
+
+    for (const DataCsv& data : dataStructure) {
+        QString originalValue = m_userInputs.value(data.name, data.value);
+
+        if (data.type == "bit" && data.bitPosition >= 0 && data.bitPosition < 8) {
+            QString value = originalValue.remove("\"");
+            if (currentBitIndex < 8) {
+                if (value.toLower() == "on") {
+                    bitByte[0] |= (1 << data.bitPosition);
+                }
+                currentBitIndex++;
+            }
+            if (currentBitIndex == 8 || &data == &dataStructure.last() || dataStructure[dataStructure.indexOf(data) + 1].type != "bit") {
+                if (currentBitIndex > 0) {
+                    if (!firstField) body.append(defaultDelimiter);
+                    body.append(bitByte);
+                    firstField = false;
+                    bitByte = QByteArray(1, 0x00);
+                    currentBitIndex = 0;
+                }
+            }
+        } else {
+            if (currentBitIndex > 0) {
+                if (!firstField) body.append(defaultDelimiter);
+                body.append(bitByte);
+                firstField = false;
+                bitByte = QByteArray(1, 0x00);
+                currentBitIndex = 0;
+            }
+
+            QByteArray valueData;
+            if (originalValue.startsWith("\"") && originalValue.endsWith("\"")) {
+                QString contentWithSpaces = originalValue.mid(1, originalValue.length() - 2);
+                QString trimmedContent = contentWithSpaces.trimmed();
+
+                if (trimmedContent.isEmpty() || trimmedContent == "-" || trimmedContent == "---" || trimmedContent == "-.−") {
+                    valueData = QByteArray(data.byteLimit, invalidPadding.at(0));
+                } else {
+                    int leftSpaces = 0;
+                    int rightSpaces = 0;
+                    for (int j = 0; j < contentWithSpaces.length(); j++) {
+                        if (contentWithSpaces[j] == ' ') leftSpaces++;
+                        else break;
+                    }
+                    for (int j = contentWithSpaces.length() - 1; j >= 0; j--) {
+                        if (contentWithSpaces[j] == ' ') rightSpaces++;
+                        else break;
+                    }
+                    QString actualData = contentWithSpaces.mid(leftSpaces, contentWithSpaces.length() - leftSpaces - rightSpaces);
+                    valueData = actualData.toUtf8();
+                    int totalPadding = data.byteLimit - valueData.size();
+                    if (totalPadding > 0) {
+                        valueData = QByteArray(leftSpaces, paddingByte.at(0)) + valueData + QByteArray(rightSpaces + totalPadding, paddingByte.at(0));
+                    } else if (totalPadding < 0) {
+                        valueData = valueData.left(data.byteLimit);
+                    }
+                }
+            } else {
+                QString value = originalValue.remove("\"");
+                if (value.isEmpty() || value == "-" || value == "---" || value == "-.−") {
+                    valueData = QByteArray(data.byteLimit, invalidPadding.at(0));
+                } else {
+                    QByteArray rawData = value.toUtf8();
+                    if (rawData.size() <= data.byteLimit) {
+                        int paddingSize = data.byteLimit - rawData.size();
+                        valueData = rawData + QByteArray(paddingSize, paddingByte.at(0));
+                    } else {
+                        valueData = rawData.left(data.byteLimit);
+                    }
+                }
+            }
+
+            QByteArray currentDelimiter = defaultDelimiter;
+            if (deviceType == "INVOS5100C") {
+                QString fieldName = data.name;
+                if (fieldName == "rSO2_6" || fieldName == "rSO2_13" || fieldName == "rSO2_20") {
+                    currentDelimiter = QByteArray::fromHex("20202020"); // 4 spaces
+                }
+            }
+
+            if (!firstField) body.append(currentDelimiter);
+            body.append(valueData);
+            firstField = false;
+        }
+    }
+
+    frame.append(body);
+
+    // 4. Thêm endByte
+    if (frameConfig.contains("endByte")) {
+        frame.append(QByteArray::fromHex(frameConfig.value("endByte").toString().remove("0x").toUtf8()));
+    } else if (deviceType == "INVOS5100C") {
+        frame.append(QByteArray::fromHex("0A0D"));
+    }
+
+    // 5. In frame
+    QString readableFrame = QString(frame).trimmed();
+    qDebug().noquote() << "Built frame for device" << deviceType << "(readable):" << readableFrame;
+    qDebug() << "Built frame for device" << deviceType << "(hex):" << frame.toHex();
+
+    return frame;
+}

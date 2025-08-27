@@ -1,0 +1,195 @@
+QByteArray FrameHandler::buildFrame(const QString& deviceType, const QString& command) {
+    if (!m_configLoader || !m_csvParser) {
+        qWarning() << "ConfigLoader or CsvParser not set!";
+        return QByteArray();
+    }
+
+    QVariantMap frameConfig = m_configLoader->getFrameConfig(deviceType, command);
+    QList<DataCsv> dataStructure = m_csvParser->getDataStructure();
+    QByteArray frame;
+
+    // 1. Thêm startByte nếu có
+    if (frameConfig.contains("startByte")) {
+        frame.append(QByteArray::fromHex(frameConfig.value("startByte").toString().remove("0x").toUtf8()));
+    }
+
+    // 2. Thêm header và các trường đặc thù với delimiter
+    QByteArray defaultDelimiter = QByteArray::fromHex("2020"); // 2 spaces (0x2020)
+    bool firstField = true;
+
+    if (frameConfig.contains("header")) {
+        frame.append(frameConfig.value("header").toString().toUtf8());
+        firstField = false;
+    }
+
+    // 3. Xây dựng body
+    QByteArray paddingByte = QByteArray::fromHex(frameConfig.value("paddingByte").toString().remove("0x").toUtf8());
+    QByteArray invalidPadding = frameConfig.contains("invalidPadding") 
+        ? QByteArray::fromHex(frameConfig.value("invalidPadding").toString().remove("0x").toUtf8()) 
+        : QByteArray::fromHex("2d"); // Default 0x2D
+
+    QByteArray body;
+    firstField = true;
+
+    int currentBitIndex = 0;
+    QByteArray bitByte(1, 0x00);
+
+    if (deviceType == "INVOS5100C" && frameConfig.contains("multiLevel") && frameConfig.value("multiLevel").toBool()) {
+        QJsonArray levels = frameConfig.value("levels").toJsonArray();
+        int fieldIndex = 0;
+
+        for (const QJsonValue& level : levels) {
+            int fieldsPerLevel = level.toObject().value("fields").toInt();
+            bool levelFirstField = true;
+
+            for (int i = 0; i < fieldsPerLevel && fieldIndex < dataStructure.size(); ++i, ++fieldIndex) {
+                const DataCsv& data = dataStructure[fieldIndex];
+                QString originalValue = m_userInputs.value(data.name, data.value);
+
+                if (data.type == "bit" && data.bitPosition >= 0 && data.bitPosition < 8) {
+                    QString value = originalValue.remove("\"");
+                    if (currentBitIndex < 8) {
+                        if (value.toLower() == "on") {
+                            bitByte[0] |= (1 << data.bitPosition);
+                        }
+                        currentBitIndex++;
+                    }
+                    if (currentBitIndex == 8 || (i + 1 == fieldsPerLevel) || dataStructure[fieldIndex + 1].type != "bit") {
+                        if (currentBitIndex > 0) {
+                            if (!levelFirstField) body.append(defaultDelimiter);
+                            body.append(bitByte);
+                            levelFirstField = false;
+                            bitByte = QByteArray(1, 0x00);
+                            currentBitIndex = 0;
+                        }
+                    }
+                } else {
+                    if (currentBitIndex > 0) {
+                        if (!levelFirstField) body.append(defaultDelimiter);
+                        body.append(bitByte);
+                        levelFirstField = false;
+                        bitByte = QByteArray(1, 0x00);
+                        currentBitIndex = 0;
+                    }
+
+                    QByteArray valueData;
+                    if (originalValue.startsWith("\"") && originalValue.endsWith("\"")) {
+                        QString contentWithSpaces = originalValue.mid(1, originalValue.length() - 2);
+                        QString trimmedContent = contentWithSpaces.trimmed();
+
+                        if (trimmedContent.isEmpty() || trimmedContent == "-" || trimmedContent == "---" || trimmedContent == "-.−") {
+                            valueData = QByteArray(data.byteLimit, invalidPadding.at(0));
+                        } else {
+                            int leftSpaces = 0;
+                            int rightSpaces = 0;
+
+                            for (int j = 0; j < contentWithSpaces.length(); j++) {
+                                if (contentWithSpaces[j] == ' ') leftSpaces++;
+                                else break;
+                            }
+                            for (int j = contentWithSpaces.length() - 1; j >= 0; j--) {
+                                if (contentWithSpaces[j] == ' ') rightSpaces++;
+                                else break;
+                            }
+
+                            QString actualData = contentWithSpaces.mid(leftSpaces, contentWithSpaces.length() - leftSpaces - rightSpaces);
+                            QByteArray actualDataBytes = actualData.toUtf8();
+
+                            valueData = actualDataBytes; // Chỉ lấy dữ liệu thực, không thêm padding từ spaces
+                            int totalPadding = data.byteLimit - valueData.size();
+                            if (totalPadding > 0) {
+                                valueData = QByteArray(leftSpaces, paddingByte.at(0)) + valueData + QByteArray(rightSpaces + totalPadding, paddingByte.at(0));
+                            } else if (totalPadding < 0) {
+                                valueData = valueData.left(data.byteLimit);
+                            }
+                        }
+                    } else {
+                        QString value = originalValue.remove("\"");
+                        if (value.isEmpty() || value == "-" || value == "---" || value == "-.−") {
+                            valueData = QByteArray(data.byteLimit, invalidPadding.at(0));
+                        } else {
+                            QByteArray rawData = value.toUtf8();
+                            if (rawData.size() <= data.byteLimit) {
+                                int paddingSize = data.byteLimit - rawData.size();
+                                valueData = rawData + QByteArray(paddingSize, paddingByte.at(0));
+                            } else {
+                                valueData = rawData.left(data.byteLimit);
+                            }
+                        }
+                    }
+
+                    QByteArray currentDelimiter = defaultDelimiter;
+                    if (deviceType == "INVOS5100C") {
+                        QString fieldName = data.name;
+                        if (fieldName == "rSO2_6" || fieldName == "rSO2_13" || fieldName == "rSO2_20") {
+                            currentDelimiter = QByteArray::fromHex("20202020"); // 4 spaces
+                        }
+                    }
+
+                    if (!levelFirstField) body.append(currentDelimiter);
+                    body.append(valueData);
+                    levelFirstField = false;
+                }
+            }
+            if (&level != &levels.last()) {
+                body.append(defaultDelimiter);
+            }
+        }
+    } else {
+        // Logic cho các device khác (HCS-CFP, PB, CI500)
+        // (Giữ nguyên như trước)
+    }
+
+    frame.append(body);
+
+    // 4. Thêm checksum nếu có
+    if (frameConfig.contains("checksumType")) {
+        QString checksumType = frameConfig.value("checksumType").toString();
+        QByteArray dataForChecksum = body;
+        if (checksumType == "XOR") {
+            char checksum = 0x00;
+            for (char byte : dataForChecksum) checksum ^= byte;
+            frame.append(QByteArray(1, checksum));
+        } else if (checksumType == "SUM") {
+            quint16 checksum = 0;
+            for (char byte : dataForChecksum) checksum += static_cast<unsigned char>(byte);
+            QString checksumStr = QString::number(checksum % 256, 16).rightJustified(2, '0');
+            frame.append(checksumStr.toUtf8());
+        }
+    }
+
+    // 5. Thêm endByte
+    if (frameConfig.contains("endByte")) {
+        frame.append(QByteArray::fromHex(frameConfig.value("endByte").toString().remove("0x").toUtf8()));
+    } else if (deviceType == "INVOS5100C") {
+        frame.append(QByteArray::fromHex("0A0D"));
+    }
+
+    // 6. In frame
+    QString readableFrame;
+    int delimiterPos = frame.indexOf(defaultDelimiter);
+    if (delimiterPos != -1) {
+        QByteArray header = frame.left(delimiterPos);
+        readableFrame = QString(header).trimmed();
+
+        QByteArray data = frame.mid(delimiterPos + defaultDelimiter.size());
+        char delimiterChar = defaultDelimiter.isEmpty() ? '\0' : defaultDelimiter.at(0);
+        QList<QByteArray> fields = data.split(delimiterChar);
+
+        for (int i = 0; i < fields.size(); ++i) {
+            QString field = QString(fields[i]).trimmed();
+            if (!field.isEmpty()) {
+                if (i > 0) readableFrame += ", ";
+                readableFrame += field;
+                if (i % 2 == 1 || field.length() > 10) readableFrame += "\n";
+            }
+        }
+    } else {
+        readableFrame = QString(frame).trimmed();
+    }
+
+    qDebug().noquote() << "Built frame for device" << deviceType << "(readable):" << readableFrame;
+    qDebug() << "Built frame for device" << deviceType << "(hex):" << frame.toHex();
+
+    return frame;
+}
